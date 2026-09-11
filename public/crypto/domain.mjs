@@ -6,6 +6,7 @@ export const DOMAIN='QTC_MARKET_MANUAL_V5';
 export const FEE_POLICY='seller_usd_2pct_v1';
 export const LEGACY_FEE_POLICY='legacy_no_fee';
 export const LISTING_HOURS=Object.freeze([1,3,6,12,24]);
+export const ADMIN_DESK_STATUSES=Object.freeze(['all','pending_review','in_progress','completed','cancelled','rejected','expired','disputed']);
 // Immutable policies: future fee changes must introduce a new policy identifier.
 export function feeTerms(total,policy,storedFee){
  if(![FEE_POLICY,LEGACY_FEE_POLICY].includes(policy))throw new Error('手续费规则已更新，请刷新并重新确认。');
@@ -38,7 +39,13 @@ export function normalize(action,p){if(!p||typeof p!=='object'||Array.isArray(p)
  if(action==='cancel')return{id:id(p.id),version:version(p.version)};
  if(action==='reserve')return{id:id(p.id),version:version(p.version),side:p.side,...quote(p,p.feePolicy),...receivingTerms(p),...platformPaymentTerms(p)};
  if(action==='set_receiving')return{id:id(p.id),version:version(p.version),side:p.side,...receivingTerms(p)};
- if(action==='desk'){if(!['mine','admin'].includes(p.scope)||!Number.isSafeInteger(p.page)||p.page<0||p.page>1000)throw new Error('查询范围无效。');return{scope:p.scope,page:p.page};}
+ if(action==='desk'){
+  if(!['mine','admin'].includes(p.scope)||!Number.isSafeInteger(p.page)||p.page<0||p.page>1000)throw new Error('查询范围无效。');
+  const hasStatus=Object.hasOwn(p,'status');
+  if(hasStatus&&p.scope!=='admin')throw new Error('状态筛选仅用于管理员查询。');
+  if(hasStatus&&!ADMIN_DESK_STATUSES.includes(p.status))throw new Error('订单状态筛选无效。');
+  return{scope:p.scope,page:p.page,...(hasStatus&&p.status!=='all'?{status:p.status}:{})};
+ }
  if(action==='sell_capacity'){if(Object.keys(p).length)throw new Error('余额仅查询当前签名钱包，请刷新后重试。');return{};}
  if(action==='listing_review'){if(!['approve','reject'].includes(p.decision))throw new Error('审核操作无效。');return{id:id(p.id),version:version(p.version),decision:p.decision,reason:text(p.reason,p.decision==='reject'?2:0,240,'审核说明')};}
  if(action==='submit_evidence')return{id:id(p.id),version:version(p.version),evidence:text(p.evidence,5,1000,'结算凭证或说明')};
