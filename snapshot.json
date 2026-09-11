@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "applicationCommit": "d21c4e1362313e7e0eb1e632aba25288b221fa2e",
+  "snapshotDate": "2026-09-11",
+  "scope": "Selected browser-wallet source and corresponding crypto source archive; not the entire deployed application.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sourcePath": "LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "lib/market/wallet.ts",
+      "sourcePath": "lib/market/wallet.ts",
+      "bytes": 2863,
+      "sha256": "23ac773b51c6839af93e5675ccd5a7faa063effa53072e912a8c793a6e031038"
+    },
+    {
+      "path": "lib/market/use-wallet.ts",
+      "sourcePath": "lib/market/use-wallet.ts",
+      "bytes": 3507,
+      "sha256": "5fccc5c1c753918c38c1dd78b54ca4068c896c057428ca958ffa4fba680dfa06"
+    },
+    {
+      "path": "lib/market/client.mjs",
+      "sourcePath": "lib/market/client.mjs",
+      "bytes": 1496,
+      "sha256": "576ee0ad7d538df88b3e561ac670e326e3ba9a10b1b18ef2ed281b8c9aaaee1f"
+    },
+    {
+      "path": "lib/market/domain.mjs",
+      "sourcePath": "lib/market/domain.mjs",
+      "bytes": 8942,
+      "sha256": "696abf3b2dec9d69374b4a4009a66fbd0304996597d10f494d14a37283672f53"
+    },
+    {
+      "path": "lib/market/settlement.mjs",
+      "sourcePath": "lib/market/settlement.mjs",
+      "bytes": 1949,
+      "sha256": "1d9c3c197fa9c5a2880ae7778e4641f52f94e9941e5e2284bcf68c468ad6050a"
+    },
+    {
+      "path": "lib/market/address-checks.mjs",
+      "sourcePath": "lib/market/address-checks.mjs",
+      "bytes": 16811,
+      "sha256": "91c531e4302e794dea018256e569c0bfaafab8362df83adcb40bcebaecde37e8"
+    },
+    {
+      "path": "lib/market/address-validation-source.mjs",
+      "sourcePath": "lib/market/address-validation-source.mjs",
+      "bytes": 2023,
+      "sha256": "33fa81fd602490698a25f1786e068fdd00628d0b4e17f4f03569e80ee481ef2d"
+    },
+    {
+      "path": "components/market/wallet-dialog.tsx",
+      "sourcePath": "components/market/wallet-dialog.tsx",
+      "bytes": 10816,
+      "sha256": "b8b419110f9a5580367c329e88a613d4198b5735fa13ec85ded8d30f05a3e597"
+    },
+    {
+      "path": "tests/test-wallet-worker.mjs",
+      "sourcePath": "tests/test-wallet-worker.mjs",
+      "bytes": 9559,
+      "sha256": "d25c47603728f37b5ba0178f5d317c440bf08d1977f1d377f7326ba0f59a7430"
+    },
+    {
+      "path": "tests/test-wallet-worker-shim.mjs",
+      "sourcePath": "tests/test-wallet-worker-shim.mjs",
+      "bytes": 1147,
+      "sha256": "0d7aa65437372fab747edb1e616fd4390e85697d8a86a79a3ec131d48b9a9430"
+    },
+    {
+      "path": "public/source/qtc-market-crypto-source.zip",
+      "sourcePath": "public/source/qtc-market-crypto-source.zip",
+      "bytes": 8950481,
+      "sha256": "517c63a88b353fb7b75a04e54e8e33a6fdcd43048385ea0d85356121914d8ff3"
+    },
+    {
+      "path": "public/source/crypto-SHA256SUMS.txt",
+      "sourcePath": "public/source/crypto-SHA256SUMS.txt",
+      "bytes": 933,
+      "sha256": "e3cc90cd9f3a664ee68c30b3e34bd00c6ceb1e83f92ef2fe32ed2b37615b4199"
+    },
+    {
+      "path": "public/source/receiving-address-validation.mjs",
+      "sourcePath": "public/source/receiving-address-validation.mjs",
+      "bytes": 2023,
+      "sha256": "33fa81fd602490698a25f1786e068fdd00628d0b4e17f4f03569e80ee481ef2d"
+    },
+    {
+      "path": "public/source/receiving-address-REBUILD.md",
+      "sourcePath": "public/source/receiving-address-REBUILD.md",
+      "bytes": 1026,
+      "sha256": "eb7e8d87a623c61468c289abb209cf123e4653d828000f1d0d333fc56b19022a"
+    },
+    {
+      "path": "public/crypto/wallet-worker.js",
+      "sourcePath": "public/crypto/wallet-worker.js",
+      "bytes": 2335,
+      "sha256": "c6a1012c088208ade0044826dbf200bfc6610d1c3a1828a678ad820572d26c4e"
+    },
+    {
+      "path": "public/crypto/vault.mjs",
+      "sourcePath": "public/crypto/vault.mjs",
+      "bytes": 2598,
+      "sha256": "cd5f59e42625c693e19b48ae7d711aaef39e6a628126df9718fbd97efd9559db"
+    },
+    {
+      "path": "public/crypto/domain.mjs",
+      "sourcePath": "public/crypto/domain.mjs",
+      "bytes": 8942,
+      "sha256": "696abf3b2dec9d69374b4a4009a66fbd0304996597d10f494d14a37283672f53"
+    },
+    {
+      "path": "public/crypto/settlement.mjs",
+      "sourcePath": "public/crypto/settlement.mjs",
+      "bytes": 1949,
+      "sha256": "1d9c3c197fa9c5a2880ae7778e4641f52f94e9941e5e2284bcf68c468ad6050a"
+    },
+    {
+      "path": "public/crypto/address-checks.mjs",
+      "sourcePath": "public/crypto/address-checks.mjs",
+      "bytes": 16811,
+      "sha256": "91c531e4302e794dea018256e569c0bfaafab8362df83adcb40bcebaecde37e8"
+    },
+    {
+      "path": "public/crypto/address-checks.LICENSE.txt",
+      "sourcePath": "public/crypto/address-checks.LICENSE.txt",
+      "bytes": 2247,
+      "sha256": "17eb6e1c65b818b20d301f2d946b89f800ce387f864d540372370df5075bec0e"
+    },
+    {
+      "path": "public/crypto/quantus_browser_crypto.js",
+      "sourcePath": "public/crypto/quantus_browser_crypto.js",
+      "bytes": 16592,
+      "sha256": "1d9670682fc43756171aec4703ef597d9f50f56e94ae34b89533c5d3d8178f93"
+    },
+    {
+      "path": "public/crypto/quantus_browser_crypto.d.ts",
+      "sourcePath": "public/crypto/quantus_browser_crypto.d.ts",
+      "bytes": 5309,
+      "sha256": "9d2afd3a86f8c3aec6f141230723027a2fccbe77b0192a400203c655f8a301a0"
+    },
+    {
+      "path": "public/crypto/quantus_browser_crypto_bg.wasm",
+      "sourcePath": "public/crypto/quantus_browser_crypto_bg.wasm",
+      "bytes": 304889,
+      "sha256": "4fee61a8c510656b1c2fed0ddc449a470c470365c0705adbeefe322193a9ece8"
+    },
+    {
+      "path": "crypto-source/src/lib.rs",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/src/lib.rs",
+      "bytes": 14490,
+      "sha256": "5155685a4edddd80d6fb95e5b34fa139503f8e6d03ac64028252bbddc2cd8d06"
+    },
+    {
+      "path": "crypto-source/Cargo.toml",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/Cargo.toml",
+      "bytes": 878,
+      "sha256": "258fc39cba50896aa7f925272906fcb4f47926bb0d7276cbff23914c5e25f894"
+    },
+    {
+      "path": "crypto-source/Cargo.lock",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/Cargo.lock",
+      "bytes": 11855,
+      "sha256": "7409ed61d76b9edca51875b6dc36a5f2aa998e6ea7521a5d15111c9caab6bf7d"
+    },
+    {
+      "path": "crypto-source/LICENSE",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "crypto-source/README.md",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/README.md",
+      "bytes": 10780,
+      "sha256": "ea4abe19955676e38c9c85315819ff66fd7f365ae7b133241c734da771f2df2b"
+    },
+    {
+      "path": "crypto-source/REBUILD.md",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/REBUILD.md",
+      "bytes": 2135,
+      "sha256": "912a6f6532ace324b57baf7125ca38d944369ae0c81c9a7402f01e553c38d5aa"
+    },
+    {
+      "path": "crypto-source/build.sh",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/build.sh",
+      "bytes": 985,
+      "sha256": "44d6be4d6151b793a9257148e3a534bc5317f4866b92f0647ddaf38eee89de7b"
+    },
+    {
+      "path": "crypto-source/cargo-vendor-config.toml",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/cargo-vendor-config.toml",
+      "bytes": 101,
+      "sha256": "77e9219c27274120197571fd165cbe4121963b5ad3bc0b20b383c86ef0ce6c2b"
+    },
+    {
+      "path": "crypto-source/test-node.cjs",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/test-node.cjs",
+      "bytes": 3212,
+      "sha256": "68c777745e6d2103a44273ca57368fb68aae6fbbc0d4715f444a9e305edd972a"
+    },
+    {
+      "path": "crypto-source/test-init-sync.mjs",
+      "sourceArchive": "public/source/qtc-market-crypto-source.zip",
+      "archivePath": "qtc-market-crypto-asset/test-init-sync.mjs",
+      "bytes": 1541,
+      "sha256": "8fc9bae9d3016cf768cc24ce3bcc355f7a176d8aa9760eb204ae822134c15275"
+    },
+    {
+      "path": "lib/i18n.tsx",
+      "sourcePath": "lib/i18n.tsx",
+      "bytes": 1914,
+      "sha256": "1f050b9b24614bc5f78f1ca33888dcff2f845df41b08f5e7f13314f5e0853442"
+    },
+    {
+      "path": "lib/i18n-messages.mjs",
+      "sourcePath": "lib/i18n-messages.mjs",
+      "bytes": 18232,
+      "sha256": "56c7e2454d5aace3f1b9b0b68664b4cf6e8ab0828187ac64732030b450e40afc"
+    }
+  ]
+}

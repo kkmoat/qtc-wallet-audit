@@ -1,0 +1,14 @@
+{
+  "name": "qtc-wallet-audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Selected QTC Market browser-wallet sources, verification scripts and isolated tests",
+  "engines": {"node": ">=24"},
+  "scripts": {
+    "verify": "node scripts/verify-snapshot.mjs",
+    "test": "node scripts/verify-snapshot.mjs && node tests/test-wallet-worker.mjs && node --test tests/wallet-randomness.test.mjs",
+    "verify:site": "node scripts/verify-site.mjs"
+  },
+  "license": "GPL-3.0-only"
+}

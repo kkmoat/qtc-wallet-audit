@@ -1,0 +1,16 @@
+'use client';
+import {useState,useRef,useEffect,useCallback} from 'react';
+import {WalletClient,readVault,saveVault,VAULT_KEY,type WalletAccount,type Vault} from './wallet';
+export function useWallet(){const client=useRef<WalletClient|null>(null),generation=useRef(0);const [vault,setVault]=useState<Vault|null>(null),[account,setAccount]=useState<WalletAccount|null>(null),[error,setError]=useState(''),[lockVersion,setLockVersion]=useState(0);
+ const lock=useCallback(()=>{generation.current++;client.current?.close();client.current=null;setAccount(null);setLockVersion(v=>v+1)},[]);
+ useEffect(()=>{try{setVault(readVault())}catch{setError('本地钱包文件无法读取。请保留浏览器数据，使用已保存的加密备份恢复。')}return()=>client.current?.close()},[]);
+ useEffect(()=>{let idle:ReturnType<typeof setTimeout>,hidden:ReturnType<typeof setTimeout>;const touch=()=>{clearTimeout(idle);idle=setTimeout(lock,300000)},visibility=()=>{clearTimeout(hidden);if(document.hidden)hidden=setTimeout(lock,60000)},storage=(e:StorageEvent)=>{if(e.key===VAULT_KEY){lock();try{setVault(readVault())}catch{setError('本地钱包已改变，请刷新页面。')}}};touch();for(const name of ['pointerdown','keydown'])window.addEventListener(name,touch);window.addEventListener('pagehide',lock);window.addEventListener('storage',storage);document.addEventListener('visibilitychange',visibility);return()=>{clearTimeout(idle);clearTimeout(hidden);for(const name of ['pointerdown','keydown'])window.removeEventListener(name,touch);window.removeEventListener('pagehide',lock);window.removeEventListener('storage',storage);document.removeEventListener('visibilitychange',visibility)}},[lock]);
+ const fresh=()=>{generation.current++;client.current?.close();client.current=new WalletClient();return client.current};
+ const create=async(password:string)=>{if(vault||localStorage.getItem(VAULT_KEY))throw new Error('这个浏览器已有钱包，请先解锁。');return fresh().request<{account:WalletAccount;vault:Vault;phrase:string}>('create',{password})};
+ const accept=(result:{account:WalletAccount;vault:Vault})=>{if(!client.current)throw new Error('钱包已锁定，请重新创建。');saveVault(result.vault);setVault(result.vault);setAccount(result.account);setError('')};
+ const unlock=async(password:string)=>{if(!vault)throw new Error('没有本地钱包。');const a=await fresh().request<WalletAccount>('unlock',{vault,password});setAccount(a);setError('')};
+ const recover=async(phrase:string,password:string)=>{const r=await fresh().request<{account:WalletAccount;vault:Vault}>('recover',{phrase,password});if(vault&&r.account.address!==vault.address){lock();throw new Error('助记词对应的地址与当前钱包不同，原钱包没有被覆盖。')}accept(r)};
+ const restore=async(v:Vault,password:string)=>{const a=await fresh().request<WalletAccount>('unlock',{vault:v,password});if(vault&&a.address!==vault.address){lock();throw new Error('备份地址与本地钱包不同，原钱包没有被覆盖。')}accept({account:a,vault:v})};
+ const sign=async(challenge:unknown,expected:unknown)=>{if(!account||!client.current)throw new Error('请先解锁钱包。');return client.current.request<{signature:string}>('sign',{challenge,expected})};
+ return{vault,account,error,lockVersion,getSession:()=>generation.current,isSession:(value:number)=>generation.current===value,lock,create,accept,unlock,recover,restore,sign};}
+export type WalletState=ReturnType<typeof useWallet>;
