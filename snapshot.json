@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "applicationCommit": "56b5d98a4797ff7168144ecf0e138f2273ae0c05",
+  "applicationCommit": "eb9535f01862c07beec047d8e0e14d79c164327e",
   "snapshotDate": "2026-09-11",
   "scope": "Selected browser-wallet source and corresponding crypto source archive; not the entire deployed application.",
   "files": [
@@ -13,14 +13,14 @@
     {
       "path": "lib/market/wallet.ts",
       "sourcePath": "lib/market/wallet.ts",
-      "bytes": 2863,
-      "sha256": "23ac773b51c6839af93e5675ccd5a7faa063effa53072e912a8c793a6e031038"
+      "bytes": 5306,
+      "sha256": "63f36957270bc4de8ec20c3a41a7a77723776616fd8df571e636675a42425890"
     },
     {
       "path": "lib/market/use-wallet.ts",
       "sourcePath": "lib/market/use-wallet.ts",
-      "bytes": 3507,
-      "sha256": "5fccc5c1c753918c38c1dd78b54ca4068c896c057428ca958ffa4fba680dfa06"
+      "bytes": 6974,
+      "sha256": "ec941e9ec014f4dacaa38b6dc10b53eb07b54be66ca0692bc19614ac4ee2d9c2"
     },
     {
       "path": "lib/market/client.mjs",
@@ -55,20 +55,20 @@
     {
       "path": "components/market/wallet-dialog.tsx",
       "sourcePath": "components/market/wallet-dialog.tsx",
-      "bytes": 10816,
-      "sha256": "b8b419110f9a5580367c329e88a613d4198b5735fa13ec85ded8d30f05a3e597"
+      "bytes": 16737,
+      "sha256": "cd3276df0730a961122e1cce5282d42d194e0ee692874d2b8f01fea37b950cd8"
     },
     {
       "path": "tests/test-wallet-worker.mjs",
       "sourcePath": "tests/test-wallet-worker.mjs",
-      "bytes": 9559,
-      "sha256": "d25c47603728f37b5ba0178f5d317c440bf08d1977f1d377f7326ba0f59a7430"
+      "bytes": 13693,
+      "sha256": "2ba47515a7b5cb0a3a4713d2c2c0f35b0c1021ac4b4969ec91540ba9aa7b3382"
     },
     {
       "path": "tests/test-wallet-worker-shim.mjs",
       "sourcePath": "tests/test-wallet-worker-shim.mjs",
-      "bytes": 1147,
-      "sha256": "0d7aa65437372fab747edb1e616fd4390e85697d8a86a79a3ec131d48b9a9430"
+      "bytes": 2055,
+      "sha256": "93bc81473fc0dadc2439a911cdafb71defbe9413d0cd2a9aea4b8a2130210b0d"
     },
     {
       "path": "public/source/qtc-market-crypto-source.zip",
@@ -97,8 +97,8 @@
     {
       "path": "public/crypto/wallet-worker.js",
       "sourcePath": "public/crypto/wallet-worker.js",
-      "bytes": 2335,
-      "sha256": "c6a1012c088208ade0044826dbf200bfc6610d1c3a1828a678ad820572d26c4e"
+      "bytes": 3788,
+      "sha256": "a5b83cf5df4e54685bde2fda5e65c4656a8ce4abf3b456a393f9ea6140f39c49"
     },
     {
       "path": "public/crypto/vault.mjs",
@@ -227,8 +227,8 @@
     {
       "path": "lib/i18n-messages.mjs",
       "sourcePath": "lib/i18n-messages.mjs",
-      "bytes": 19110,
-      "sha256": "14fa8be3448e7068e57617c4057ee8096effb979f037f92d72e84f42e83447d7"
+      "bytes": 19887,
+      "sha256": "b576af323155861b1b326dee4a13c6e5b009dedf364a2dcedd04314e430b0d3a"
     }
   ]
 }

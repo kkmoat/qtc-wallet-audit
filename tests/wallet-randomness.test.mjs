@@ -21,7 +21,13 @@ test('actual wallet worker uses fresh CSPRNG inputs and fails closed without the
  const ready=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject});
  const readyTimer=setTimeout(()=>rejectReady(new Error('Instrumented wallet worker readiness timed out')),10000);
  worker.on('message',message=>{
-  if(message.ready){clearTimeout(readyTimer);resolveReady();return;}
+  if(message.ready)return; // Importing the shim is separate from WASM readiness.
+  if(message.type==='ready'){clearTimeout(readyTimer);resolveReady();return;}
+  if(message.type==='fatal'){
+   clearTimeout(readyTimer);rejectReady(new Error('Instrumented wallet initialization failed'));
+   for(const slot of pending.values()){clearTimeout(slot.timer);slot.reject(new Error('Instrumented wallet initialization failed'))}pending.clear();return;
+  }
+  if(message.type==='progress')return;
   const slot=pending.get(message.id);
   if(slot){clearTimeout(slot.timer);pending.delete(message.id);slot.resolve(message);}
  });

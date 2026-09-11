@@ -26,9 +26,12 @@ Math.random=()=>{weakRandomCalls++;throw new Error('Weak random fallback forbidd
 
 // Suppress and count console attempts without retaining potentially sensitive args.
 for(const name of ['log','info','warn','error','debug','trace','dir','table'])console[name]=()=>{consoleCalls++;};
-globalThis.fetch=async input=>{
+globalThis.fetch=async(input,options)=>{
  const url=typeof input==='string'?input:input instanceof URL?input.href:input?.url;
- if(url===wasmUrl){allowedFetches++;return new Response(await readFile(workerData.wasmPath),{headers:{'Content-Type':'application/wasm'}})}
+ if(url===wasmUrl){
+  if(!(options?.signal instanceof AbortSignal)||options.credentials!=='same-origin'||options.redirect!=='error')throw new Error('Wallet WASM fetch must be abortable and restricted to its own origin');
+  allowedFetches++;return new Response(await readFile(workerData.wasmPath),{headers:{'Content-Type':'application/wasm'}});
+ }
  rejectedFetches++;
  throw new Error('Wallet test refused an unexpected fetch');
 };
