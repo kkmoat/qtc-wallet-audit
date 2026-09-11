@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "applicationCommit": "7865c310c8d8cdcba88f700052b85745806a0519",
+  "applicationCommit": "b525292c4fe1ced6752d3483f19efd7906b2c9a4",
   "snapshotDate": "2026-09-11",
   "scope": "Selected browser-wallet source and corresponding crypto source archive; not the entire deployed application.",
   "files": [
@@ -25,14 +25,14 @@
     {
       "path": "lib/market/client.mjs",
       "sourcePath": "lib/market/client.mjs",
-      "bytes": 1990,
-      "sha256": "963fa67a049a03a67a58ab59d93586f4c790665492e277480b376c15a55b6f3f"
+      "bytes": 2007,
+      "sha256": "5241e5c66fc200db8e4d09c0fd1d3f2d2ef925e74480ca0aba7793133f83fddd"
     },
     {
       "path": "lib/market/domain.mjs",
       "sourcePath": "lib/market/domain.mjs",
-      "bytes": 10529,
-      "sha256": "5bb3702f5857ac85e1279e8d9bba66ce0eb9f3cce93ea40ec3bb32fa57b54b2d"
+      "bytes": 12555,
+      "sha256": "6af83219dad567c3977d8020663a058929c3c70ee43e617965d53cdeae88fc05"
     },
     {
       "path": "lib/market/settlement.mjs",
@@ -109,8 +109,8 @@
     {
       "path": "public/crypto/domain.mjs",
       "sourcePath": "public/crypto/domain.mjs",
-      "bytes": 10529,
-      "sha256": "5bb3702f5857ac85e1279e8d9bba66ce0eb9f3cce93ea40ec3bb32fa57b54b2d"
+      "bytes": 12555,
+      "sha256": "6af83219dad567c3977d8020663a058929c3c70ee43e617965d53cdeae88fc05"
     },
     {
       "path": "public/crypto/settlement.mjs",
@@ -227,8 +227,8 @@
     {
       "path": "lib/i18n-messages.mjs",
       "sourcePath": "lib/i18n-messages.mjs",
-      "bytes": 20468,
-      "sha256": "16470b0c938f47d4401cab045cf5a9e9c787d1a7e3512bbaa235fd9cb6c8bee6"
+      "bytes": 21310,
+      "sha256": "c9a061903f4e38d41cc1cbc49005cb2dc0b35f237cec739fde7ba9fe9b28891a"
     }
   ]
 }

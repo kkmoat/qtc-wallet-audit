@@ -4,7 +4,7 @@
 
 这里公开 QTC Market 的**钱包创建、恢复、备份、本地存储与签名相关代码**，便于逐行检查和运行测试。它是从市场项目提取的独立代码快照，不包含市场后台、生产数据库、环境变量或原私密仓库的历史。
 
-对应市场源码版本：`7865c310c8d8cdcba88f700052b85745806a0519`（2026-09-11）。已逐项核对该精确提交中的选中源文件和源码 ZIP 成员，字节、长度与 SHA-256 均与快照一致。原市场仓库保持私密；公众可以直接查看本仓库的选中源码。每个原样复制或从源码包解出的文件都有 [SHA-256 清单](snapshot.json)。本次线上资产比对状态见 [验证记录](VERIFICATION.md)。这不是第三方安全审计报告，也不是“绝对安全”证书。
+对应市场源码版本：`b525292c4fe1ced6752d3483f19efd7906b2c9a4`（2026-09-11）。已逐项核对该精确提交中的选中源文件和源码 ZIP 成员，字节、长度与 SHA-256 均与快照一致。原市场仓库保持私密；公众可以直接查看本仓库的选中源码。每个原样复制或从源码包解出的文件都有 [SHA-256 清单](snapshot.json)。本次线上资产比对状态见 [验证记录](VERIFICATION.md)。这不是第三方安全审计报告，也不是“绝对安全”证书。
 
 ## 可以检查什么
 
@@ -72,7 +72,9 @@ bash build.sh
 
 这个快照包含当前中英文钱包备份界面及其语言状态、错误文案模块（`lib/i18n.tsx`、`lib/i18n-messages.mjs`）；语言模块只处理界面文案与本地语言偏好。
 
-本次更新仅同步已有的 `lib/market/client.mjs` 与 `lib/i18n-messages.mjs`。客户端仅在 `listing_review`、`trade_review`、`escrow_review`、`history_add` 的固定 `/api/market/commit` 请求中，且未显式提供旧审核密码时使用 `credentials: 'same-origin'`；其他市场 API 调用及旧密码提交继续使用 `omit`。会话失效的 HTTP 401 状态保留给界面处理，客户端不会自行重试或重放已签名请求。没有新增密钥处理，也没有加入后台登录/重登界面、会话验证、管理员权限、业务数据、私有测试或生产配置。现有公共测试覆盖钱包回归和随机输入行为，不执行此 API 客户端或完整 React 界面，也不验证服务器是否正确处理 Cookie、权限和订单写入。
+本次更新仅同步已有的 `lib/market/domain.mjs`、`public/crypto/domain.mjs`、`lib/market/client.mjs` 与 `lib/i18n-messages.mjs`。签名协议增加 `history_desk` 的分页、来源及可见状态筛选，以及 `history_delete` 的来源、完整编号、原始数量、单价、已存总额、完成时间与版本快照；删除载荷保留历史金额，不重新报价。它们是市场历史记录操作，不是链上转账授权。
+
+客户端仅在 `listing_review`、`trade_review`、`escrow_review`、`history_add`、`history_delete` 的固定 `/api/market/commit` 请求中，且未显式提供旧审核密码时使用 `credentials: 'same-origin'`；其他市场 API 调用、`history_desk` 查询及旧密码提交继续使用 `omit`。会话失效的 HTTP 401 状态保留给界面处理，客户端不会自行重试或重放已签名请求。没有新增密钥处理，也没有加入历史记录工作台、后台登录/重登界面、会话验证、管理员权限、业务数据、私有测试或生产配置。现有公共测试覆盖钱包回归和随机输入行为，不执行此 API 客户端、完整 React 界面或新增历史记录操作的端到端流程，也不验证服务器是否正确处理 Cookie、权限、删除标记和统计。
 
 这个快照不是可直接部署的完整市场项目。`lib/market/` 和 `components/market/` 中的文件保留原始源码用于审阅，未打包其完整 React/Next.js UI 依赖。测试执行的是 `public/crypto/` 的实际钱包逻辑；新增审阅脚本位于 `scripts/`，新增随机性测试与原 Worker 回归测试位于 `tests/`。
 

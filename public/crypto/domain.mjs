@@ -7,6 +7,9 @@ export const FEE_POLICY='seller_usd_2pct_v1';
 export const LEGACY_FEE_POLICY='legacy_no_fee';
 export const LISTING_HOURS=Object.freeze([1,3,6,12,24]);
 export const ADMIN_DESK_STATUSES=Object.freeze(['all','pending_review','in_progress','completed','cancelled','rejected','expired','disputed']);
+export const ADMIN_HISTORY_SOURCES=Object.freeze(['all','platform','wechat_otc']);
+export const ADMIN_HISTORY_VISIBILITIES=Object.freeze(['all','visible','deleted']);
+export const ADMIN_HISTORY_PAGE_SIZES=Object.freeze([10,25,50,100]);
 // Immutable policies: future fee changes must introduce a new policy identifier.
 export function feeTerms(total,policy,storedFee){
  if(![FEE_POLICY,LEGACY_FEE_POLICY].includes(policy))throw new Error('手续费规则已更新，请刷新并重新确认。');
@@ -26,6 +29,24 @@ function transactionHash(value,label){if(typeof value!=='string'||value.length!=
 export function totalCents(quantity,price){const n=decimal(quantity,12,21000000n*10n**12n)*decimal(price,6,1000000n*10n**6n);const cents=(n+5n*10n**15n)/10n**16n;if(cents<1n)throw new Error('整单总价至少为 0.01 USD。');return cents.toString();}
 function quote(p,policy){const quantity=units(decimal(p.quantity,12,21000000n*10n**12n),12),price=units(decimal(p.price,6,1000000n*10n**6n),6),total=totalCents(quantity,price);const out={quantity,price,currency:'USD',totalCents:total,...feeTerms(total,policy)};for(const key of ['currency','totalCents','feePolicy','feeBps','feePayer','feeCents','buyerPayCents','sellerReceiveCents'])if(p[key]!==undefined&&p[key]!==out[key])throw new Error('费用与报价不一致，请重新确认。');return out;}
 export function normalize(action,p){if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('无效的订单内容。');
+ if(action==='history_desk'){
+  const page=p.page===undefined?0:p.page,pageSize=p.pageSize===undefined?10:p.pageSize,source=p.source===undefined?'all':p.source,visibility=p.visibility===undefined?'all':p.visibility;
+  if(!Number.isSafeInteger(page)||page<0||page>1000||!ADMIN_HISTORY_PAGE_SIZES.includes(pageSize))throw new Error('历史成交分页无效。');
+  if(!ADMIN_HISTORY_SOURCES.includes(source)||!ADMIN_HISTORY_VISIBILITIES.includes(visibility))throw new Error('历史成交筛选无效。');
+  return{page,pageSize,source,visibility};
+ }
+ if(action==='history_delete'){
+  if(!['platform','wechat_otc'].includes(p.source))throw new Error('历史成交来源无效。');
+  // Preserve legacy quantity formatting and the recorded gross amount. Removal
+  // confirms a stored snapshot; it must not reprice historical transactions.
+  if(typeof p.quantity!=='string'||p.quantity.length>35||!/^(0|[1-9][0-9]*)(\.[0-9]{1,12})?$/.test(p.quantity)||/[^0-9.]/.test(p.quantity)||!/[1-9]/.test(p.quantity))throw new Error('历史成交数量无效。');
+  const price=units(decimal(p.price,6,BigInt(Number.MAX_SAFE_INTEGER)),6);
+  if(price!==p.price)throw new Error('历史成交单价无效。');
+  if(typeof p.totalCents!=='string'||!/^(0|[1-9][0-9]*)$/.test(p.totalCents)||/[^0-9]/.test(p.totalCents))throw new Error('历史成交总额无效。');
+  if(!(p.source==='wechat_otc'&&p.completedAt===null)&&(!Number.isSafeInteger(p.completedAt)||p.completedAt<0))throw new Error('实际成交时间无效。');
+  if(p.source==='wechat_otc'&&p.version!==null)throw new Error('历史成交版本无效，请刷新。');
+  return{source:p.source,id:id(p.id),quantity:p.quantity,price,totalCents:p.totalCents,completedAt:p.completedAt,version:p.source==='platform'?version(p.version):null};
+ }
  if(action==='admin_delete'){
   if(!['listing','trade'].includes(p.kind))throw new Error('删除记录类型无效。');
   return{kind:p.kind,id:id(p.id),version:version(p.version)};
