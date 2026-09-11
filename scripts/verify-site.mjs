@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import {manifest,sha256} from './verify-snapshot.mjs';
-const allowed=new Set(['https://qtc-market.vercel.app','https://uniqtc.xyz','https://www.uniqtc.xyz']);
-const origin=process.argv[2];
-assert.ok(process.argv.length===3&&allowed.has(origin),'Pass exactly one documented HTTPS market origin. Example: npm run verify:site -- https://uniqtc.xyz');
+const allowed=new Set(['https://uniqtc.xyz','https://uniqtc.xyz/']);
+const input=process.argv[2];
+assert.ok(process.argv.length===3&&allowed.has(input),'Pass the market website URL. Example: npm run verify:site -- https://uniqtc.xyz/');
+const origin=input.replace(/\/$/,'');
 const assets=manifest.files.filter(x=>x.path.startsWith('public/crypto/')&&!x.path.endsWith('.d.ts'));
 for(const asset of assets){
  const url=origin+'/'+asset.path.slice('public/'.length);

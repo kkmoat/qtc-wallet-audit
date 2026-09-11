@@ -1,5 +1,7 @@
 # QTC Market 钱包代码审阅包
 
+访问网站：[QTC Market](https://uniqtc.xyz/)。
+
 这里公开 QTC Market 的**钱包创建、恢复、备份、本地存储与签名相关代码**，便于逐行检查和运行测试。它是从市场项目提取的独立代码快照，不包含市场后台、生产数据库、环境变量或原私密仓库的历史。
 
 对应市场源码版本：`eb9535f01862c07beec047d8e0e14d79c164327e`（2026-09-11）。已逐项核对该精确提交中的选中源文件和源码 ZIP 成员，字节、长度与 SHA-256 均与快照一致。原市场仓库保持私密；公众可以直接查看本仓库的选中源码。每个原样复制或从源码包解出的文件都有 [SHA-256 清单](snapshot.json)。本次线上资产比对状态见 [验证记录](VERIFICATION.md)。这不是第三方安全审计报告，也不是“绝对安全”证书。
@@ -36,9 +38,7 @@ npm test
 ### 比对线上钱包文件
 
 ```sh
-npm run verify:site -- https://uniqtc.xyz
-# 或
-npm run verify:site -- https://qtc-market.vercel.app
+npm run verify:site -- https://uniqtc.xyz/
 ```
 
 脚本只下载公开 `/crypto/` 文件做 SHA-256 比对，不执行下载的代码，不读取钱包，不发送账户数据。结果仅代表**请求发生时，该来源返回的这些文件**与快照一致。网络失败或文件变化均会退出失败，不会忽略差异。

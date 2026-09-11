@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Selected QTC Market browser-wallet sources, verification scripts and isolated tests",
+  "homepage": "https://uniqtc.xyz/",
   "engines": {"node": ">=24"},
   "scripts": {
     "verify": "node scripts/verify-snapshot.mjs",
